@@ -1,7 +1,7 @@
 <h2>Reactivos: Switches</h2>
 <hr>
 
-<form autocomplete="off">
+<form [formGroup]="myForm" (ngSubmit)="onSave()" autocomplete="off">
 
   <!-- Radio -->
   <div class="row mb-3">
@@ -10,6 +10,7 @@
     <div class="col-sm-9">
       <div class="form-check">
         <input
+          formControlName="gender"
           class="form-check-input"
           type="radio"
           value="M"
@@ -24,6 +25,7 @@
 
       <div class="form-check">
         <input
+          formControlName="gender"
           class="form-check-input"
           type="radio"
           value="F"
@@ -45,6 +47,7 @@
     <div class="col-sm-9">
       <div class="form-check form-switch mt-2">
         <input
+          formControlName="wantNotifications"
           class="form-check-input"
           type="checkbox"
           id="flexSwitchCheckChecked">
@@ -65,6 +68,7 @@
     <div class="col-sm-9">
       <div class="form-check">
         <input
+          formControlName="termsAndConditions"
           class="form-check-input"
           type="checkbox"
           id="flexCheckDefault">
@@ -76,7 +80,9 @@
         </label>
       </div>
 
-      <span class="form-text text-danger">
+      <span
+        *ngIf="isValidField ( 'termsAndConditions' )"
+        class="form-text text-danger">
         Debe de aceptar las condiciones de uso
       </span>
     </div>
@@ -95,15 +101,15 @@
 </form>
 
 <h5> Valor del formulario </h5>
-<pre> {{ 'object' | json }} </pre>
+<pre> {{ myForm.value | json }} </pre>
 <br>
 
 <h5> Persona </h5>
-<pre> {{ 'object' | json }} </pre>
+<pre> {{ person | json }} </pre>
 <br>
 
 <h5> Valid </h5>
-<pre> {{ 'object' | json }} </pre>
+<pre> {{ myForm.valid | json }} </pre>
 
 <!-- <h5>Términos</h5> -->
 <!-- <pre>{{ myForm.controls?.terminos?.errors | json }}</pre> -->
